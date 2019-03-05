@@ -3,14 +3,14 @@
 
 #include "pch.h"
 #include <iostream>
-#include <string>
+#include "Input.h"
 
-using namespace std;
-
-int main()
+int main(int argc, char * argv[])
 {
+    //std::cout << "Hello World!\n"; 
+	Input input = Input(argc, argv);
+	cout << input.getInput() << endl;
 
- 
 }
 
 // 运行程序: Ctrl + F5 或调试 >“开始执行(不调试)”菜单
