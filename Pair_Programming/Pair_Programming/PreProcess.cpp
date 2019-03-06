@@ -76,6 +76,7 @@ void PreProcess::GenGraph()
 			}
 		}
 	}
+	file.close();
 	if (PreProcess::num == 0)
 	{
 		Error("No Words in File");
@@ -114,6 +115,17 @@ void PreProcess::printRingGraph() {
 		}
 		cout << "================================\n\n" << endl;
 	}
+}
+
+void PreProcess::print(string* ary, int num)
+{
+	ofstream slt("solution.txt");
+	int i;
+	for (i = 0; i < num; i++)
+	{
+		slt << ary[i] << endl;
+	}
+	slt.close();
 }
 
 int PreProcess::num = 0;

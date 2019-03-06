@@ -16,7 +16,7 @@ public:
 	~PreProcess();
 	void printGraph();
 	void printRingGraph();
-
+	void print(string* ary, int n);
 	
 
 private:
