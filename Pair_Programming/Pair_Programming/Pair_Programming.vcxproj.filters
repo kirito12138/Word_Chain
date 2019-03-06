@@ -27,6 +27,9 @@
     <ClInclude Include="Input.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="ConstValues.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">

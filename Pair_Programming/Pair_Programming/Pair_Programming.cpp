@@ -4,12 +4,17 @@
 #include "pch.h"
 #include <iostream>
 #include "Input.h"
+#include "PreProcess.h"
+
 
 int main(int argc, char * argv[])
 {
     //std::cout << "Hello World!\n"; 
-	Input input = Input(argc, argv);
-	cout << input.getInput() << endl;
+	/*Input input = Input(argc, argv);
+	cout << input.getInput() << endl;*/
+	PreProcess pp("input.txt");
+	pp.printGraph();
+	pp.printRingGraph();
 
 }
 
