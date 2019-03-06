@@ -47,7 +47,7 @@ void PreProcess::GenGraph()
 				temp[i] = tolower(temp[i]);
 				i++;
 			}
-			node newN = { temp.substr(wordBegin, i - wordBegin), (PreProcess::num)++, i - wordBegin };
+			node newN = { temp.substr(wordBegin, i - wordBegin), (PreProcess::ringNum)++, i - wordBegin };
 			h = newN.name[0] - 'a';
 			t = newN.name[i - wordBegin - 1] - 'a';
 			ringGraph[h].push_back(newN);
@@ -68,6 +68,7 @@ void PreProcess::GenGraph()
 			{
 				ifExist[h][t] = i - wordBegin;
 				graph[h].push_back(newN);
+				PreProcess::num++;
 			}
 			else
 			{
@@ -116,3 +117,4 @@ void PreProcess::printRingGraph() {
 }
 
 int PreProcess::num = 0;
+int PreProcess::ringNum = 0;
