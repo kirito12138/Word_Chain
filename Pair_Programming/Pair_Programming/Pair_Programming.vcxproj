@@ -152,12 +152,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="ConstValues.h" />
+    <ClInclude Include="DFS.h" />
     <ClInclude Include="Error.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="PreProcess.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="DFS.cpp" />
     <ClCompile Include="Error.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Pair_Programming.cpp" />

@@ -6,6 +6,10 @@
 #include <fstream>
 #include "Error.h"
 
+PreProcess::PreProcess()
+{
+
+}
 PreProcess::PreProcess(string str)
 {
 	this->path = str;

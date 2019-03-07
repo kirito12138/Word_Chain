@@ -8,6 +8,7 @@ using namespace std;
 class PreProcess
 {
 public:
+	PreProcess();
 	static int ringNum;
 	static int num;
 	vector< vector<node> > ringGraph;

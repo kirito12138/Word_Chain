@@ -5,6 +5,7 @@
 #include <iostream>
 #include "Input.h"
 #include "PreProcess.h"
+#include "DFS.h"
 
 
 int main(int argc, char * argv[])
@@ -16,6 +17,8 @@ int main(int argc, char * argv[])
 	pp.printGraph();
 	pp.printRingGraph();
 	cout << PreProcess::ringNum << "   " << PreProcess::num << endl;*/
+	PreProcess pp("input.txt");
+	DFS dfs(pp);
 }
 
 // 运行程序: Ctrl + F5 或调试 >“开始执行(不调试)”菜单
