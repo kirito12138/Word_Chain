@@ -13,7 +13,7 @@ public:
 	~DFS();
 	DFS(PreProcess pp);
 	void getGraph();
-	void DFSroute(vector<string> route, int len, int start, int lastLetter);
+	void DFSroute(int len, int start, int lastLetter);
 	bool hasRing();
 	int getMaxLen();
 	vector<string> getResult();
@@ -25,4 +25,5 @@ private:
 	int endLetter;
 	vector<int> tellRepeat;           //judge if has ring ; len == ringnum
 	PreProcess PreP;
+	vector<string> route;
 };

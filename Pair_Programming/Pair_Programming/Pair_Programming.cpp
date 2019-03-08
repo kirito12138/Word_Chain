@@ -17,10 +17,10 @@ int main(int argc, char * argv[])
     //std::cout << "Hello World!\n"; 
 	//Input input = Input(argc, argv);
 	//cout << input.getInput() << endl;
-	PreProcess pp("input.txt");
-	pp.printGraph();
-	pp.printRingGraph();
-	cout << PreProcess::ringNum << "   " << PreProcess::num << endl;
+	//PreProcess pp("input.txt");
+	//pp.printGraph();
+	//pp.printRingGraph();
+	//cout << PreProcess::ringNum << "   " << PreProcess::num << endl;
 
 	/*int i, j, k;
 	Input input = Input(argc, argv);
@@ -28,7 +28,18 @@ int main(int argc, char * argv[])
 	DFS dfs(pp);
 	vector < vector<string> > ans;
 	for (i=0;i<26)*/
+	PreProcess pp("input.txt");
+	DFS dfs = DFS(pp);
+	dfs.getGraph();
+	vector<string>r;
 
+	dfs.DFSroute(0, 'h'-'a', -1);
+	r = dfs.getResult();
+	int i = 0;
+	while (i < r.size()) {
+		cout << r[i++] << endl;
+	}
+	system("pause");
 }
 
 // 运行程序: Ctrl + F5 或调试 >“开始执行(不调试)”菜单

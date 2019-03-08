@@ -28,25 +28,29 @@ DFS::DFS(PreProcess pp) {
 void DFS::getGraph() {
 	this->graph = PreP.graph;
 }
-void DFS::DFSroute(vector<string> route, int len, int start, int lastLetter)
+void DFS::DFSroute(int len, int start, int lastLetter)
 {
 	unsigned int i;
 
 	for (i = 0; i < graph[start].size(); i++) {
 		int tmp = graph[start][i].len;    //if all.tolow()!!
-		tmp = graph[start][i].name[tmp - 1] - 'a';
+		tmp = graph[start][i].name[tmp -1] - 'a';
 		if (lastLetter == tmp) {
 			continue;
 		}
-		route.push_back(graph[start][i].name);
 		len += graph[start][i].len;
-		this->DFSroute(route, len, tmp, start);
+		route.push_back(graph[start][i].name);
+
+		this->DFSroute(len, tmp, start);
+
+		route.pop_back();
+		len -= graph[start][i].len;
 	}
 	if (len > this->maxLen) {
 		this->maxLen = len;
 		result = route;
-		//result.push_back(graph[start][i-1].name);
 	}
+	
 }
 bool DFS::hasRing()
 {
