@@ -18,7 +18,11 @@ PreProcess::PreProcess(string str)
 	ringGraph.resize(26);
 	graph.resize(26);
 	GenGraph();
-
+	/*for (int i = 0; i < ringNum; i++)
+	{
+		ifCheck.push_back(0);
+	}*/
+	
 }
 
 
@@ -141,7 +145,6 @@ void PreProcess::print(string* ary, int num)
 	}
 	slt.close();
 }
-
 
 
 int PreProcess::num = 0;

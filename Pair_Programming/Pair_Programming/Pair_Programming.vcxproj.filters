@@ -33,6 +33,9 @@
     <ClInclude Include="DFS.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="RingDFS.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -51,6 +54,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="DFS.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="RingDFS.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

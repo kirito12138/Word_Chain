@@ -10,7 +10,7 @@ class Input
 private:
 	string inputString;
 	string path;
-	int mode;
+	int mode;   //0:default   1:word   2:letter
 	int ifRing;
 	int head;
 	int tail;
