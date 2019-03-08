@@ -5,7 +5,7 @@
 #include "PreProcess.h"
 #include "ConstValues.h"
 #include <vector>
-
+#include <queue>
 
 using namespace std;
 
@@ -25,15 +25,16 @@ DFS::DFS(PreProcess pp) {
 	tellRepeat.resize(PreProcess::ringNum);
 	PreP = pp;
 }
-void DFS::getGraph(PreProcess &p) {
-	this->graph = p.graph;
+void DFS::getGraph() {
+	this->graph = PreP.graph;
 }
 void DFS::DFSroute(vector<string> route, int len, int start, int lastLetter)
 {
 	unsigned int i;
 
 	for (i = 0; i < graph[start].size(); i++) {
-		int tmp = graph[start][i].name[0] - 'a';//if all.tolow()!!
+		int tmp = graph[start][i].len;    //if all.tolow()!!
+		tmp = graph[start][i].name[tmp - 1] - 'a';
 		if (lastLetter == tmp) {
 			continue;
 		}
@@ -44,46 +45,59 @@ void DFS::DFSroute(vector<string> route, int len, int start, int lastLetter)
 	if (len > this->maxLen) {
 		this->maxLen = len;
 		result = route;
-		result.push_back(graph[start][i].name);
+		//result.push_back(graph[start][i-1].name);
 	}
 }
-/*bool DFS::hasRing()
+bool DFS::hasRing()
 {
 	int i;
-	int inDArray[26];
+	int inDArray[26] = { 0 };
 	queue<int> zeroDArray;//transfer graph to in-degree array
 	vector<int> topoArray;
 	int topo_i = 0;//index of topoArray
 
 	for (i = 0; i < 26; i++) {
-		inDArray[i] = graph[i].size();
-		if (graph[i].size() == 0) {
+		for (unsigned int j = 0; j < graph[i].size(); j++) {
+			int tmp = graph[i][j].len;     //if all.tolow()!!
+			tmp = graph[i][j].name[tmp - 1] - 'a';
+			if (tmp != i) {
+				inDArray[tmp]++;
+			}
+		}
+	}
+	for (i = 0; i < 26; i++) {
+		if (inDArray[i] == 0) {
 			zeroDArray.push(i);
 		}
 	}
-
 	while (!zeroDArray.empty()) {
 		int topE = zeroDArray.front();
-		zeroDArray.pop();
 		topoArray.push_back(topE);
+		zeroDArray.pop();
 
 		for (unsigned int i = 0; i < graph[topE].size(); i++) {
-			int tmp = graph[topE][i].name[0] - 'a';//if all.tolow()!!
-			inDArray[i]--;
-			if (inDArray[i] == 0) {
-				zeroDArray.push(i);
+			int tmp = graph[topE][i].len;     //if all.tolow()!!
+			tmp = graph[topE][i].name[tmp - 1] - 'a';
+			if (tmp != topE) {
+				inDArray[tmp]--;
+				if (inDArray[tmp] == 0) {
+					zeroDArray.push(tmp);
+				}
 			}
 		}
 	}
 
 	if (topoArray.size() == 26) {
-		return true;
+		return false;
 	}
-	return false;
-}*/
+	return true;
+}
 int DFS::getMaxLen() {
 	return maxLen;
 }
 vector<string> DFS::getResult() {
 	return result;
+}
+void DFS::setEndLetter(int num) {
+	this->endLetter = num;
 }
