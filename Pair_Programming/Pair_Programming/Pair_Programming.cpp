@@ -30,15 +30,21 @@ int main(int argc, char * argv[])
 	for (i=0;i<26)*/
 	PreProcess pp("input.txt");
 	DFS dfs = DFS(pp);
-	dfs.getGraph();
 	vector<string>r;
-
-	dfs.DFSroute(0, 'h'-'a', -1);
-	r = dfs.getResult();
-	int i = 0;
-	while (i < r.size()) {
-		cout << r[i++] << endl;
+	//r = dfs.findMax();
+	dfs.getGraph();
+	dfs.hasRing();
+	for (int i = 0; i < 26; i++) {
+		dfs.notDFS(i);
 	}
+	for (int i = 0; i < dfs.getResult().size(); i++) {
+		cout << dfs.getResult()[i] << endl;
+	}
+	//int i = 0;
+	//while (i < r.size()) {
+	//	cout << r[i++] << endl;
+	//}
+
 	system("pause");
 }
 
