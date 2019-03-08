@@ -18,11 +18,11 @@ public:
 	void printGraph();
 	void printRingGraph();
 	void print(string* ary, int n);
-	
+	int ifExist[26][26] = {};
 
 private:
 	string path;
-	int ifExist[26][26] = {};
+	//bool cmpLen(const node &str1, const node &str2);
 	void GenGraph();
 };
 

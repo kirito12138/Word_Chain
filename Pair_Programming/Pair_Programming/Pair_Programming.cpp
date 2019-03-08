@@ -6,19 +6,29 @@
 #include "Input.h"
 #include "PreProcess.h"
 #include "DFS.h"
+#include <string>
+#include <vector>
+
+using namespace std;
 
 
 int main(int argc, char * argv[])
 {
     //std::cout << "Hello World!\n"; 
-	/*Input input = Input(argc, argv);
-	cout << input.getInput() << endl;
+	//Input input = Input(argc, argv);
+	//cout << input.getInput() << endl;
 	PreProcess pp("input.txt");
 	pp.printGraph();
 	pp.printRingGraph();
-	cout << PreProcess::ringNum << "   " << PreProcess::num << endl;*/
-	PreProcess pp("input.txt");
+	cout << PreProcess::ringNum << "   " << PreProcess::num << endl;
+
+	/*int i, j, k;
+	Input input = Input(argc, argv);
+	PreProcess pp(input.getPath());
 	DFS dfs(pp);
+	vector < vector<string> > ans;
+	for (i=0;i<26)*/
+
 }
 
 // 运行程序: Ctrl + F5 或调试 >“开始执行(不调试)”菜单

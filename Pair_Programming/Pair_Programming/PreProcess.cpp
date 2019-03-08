@@ -5,7 +5,9 @@
 #include <vector>
 #include <fstream>
 #include "Error.h"
-
+#include <algorithm>
+#include <set>
+using namespace std;
 PreProcess::PreProcess()
 {
 
@@ -24,6 +26,10 @@ PreProcess::~PreProcess()
 {
 }
 
+bool cmpLen(const node &str1, const node &str2)
+{
+	return str1.len > str2.len;
+}
 
 void PreProcess::GenGraph()
 {
@@ -85,6 +91,10 @@ void PreProcess::GenGraph()
 	{
 		Error("No Words in File");
 	}
+	for (i = 0; i < 26; i++)
+	{
+		sort(ringGraph[i].begin(), ringGraph[i].end(), &cmpLen);
+	}
 }
 
 void PreProcess::printGraph() {
@@ -131,6 +141,8 @@ void PreProcess::print(string* ary, int num)
 	}
 	slt.close();
 }
+
+
 
 int PreProcess::num = 0;
 int PreProcess::ringNum = 0;
