@@ -49,13 +49,14 @@ int main(int argc, char * argv[])
 	//}
 
 	system("pause");*/
-	//dfs.hasRing();
+	dfs.getGraph();
+	dfs.hasRing();
 	vector <string> ans = rd.initDFS(input.getMode(), input.getHead(), input.getTail(), input.getIfRing());
 	for (int i = 0; i < ans.size(); i++)
 	{
 		cout << ans[i] << endl;
 	}
-
+	pp.print(ans);
 }
 
 // 运行程序: Ctrl + F5 或调试 >“开始执行(不调试)”菜单

@@ -139,11 +139,11 @@ void PreProcess::printRingGraph() {
 	}
 }
 
-void PreProcess::print(string* ary, int num)
+void PreProcess::print(vector <string> ary)
 {
 	ofstream slt("solution.txt");
 	int i;
-	for (i = 0; i < num; i++)
+	for (i = 0; i < ary.size(); i++)
 	{
 		slt << ary[i] << endl;
 	}

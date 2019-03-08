@@ -101,7 +101,7 @@ vector <string> RingDFS::initDFS(int mode, int head, int tail, int ring)
 	{
 		curGraph = preP.ringGraph;
 	}
-	printCurGraph();
+	//printCurGraph();
 	//preP.printRingGraph();
 	ifCheck.resize(preP.ringNum);
 	letterLen = 0;
@@ -211,7 +211,7 @@ vector <string> RingDFS::initDFS(int mode, int head, int tail, int ring)
 			}
 			
 			//====================================================
-			cout << *max_element(maxRoute, maxRoute + 26) << endl;
+			//cout << *max_element(maxRoute, maxRoute + 26) << endl;
 			int originR[26];
 			for (i = 0; i < 26; i++)
 			{

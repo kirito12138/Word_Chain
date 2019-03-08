@@ -18,7 +18,7 @@ public:
 	void printGraph();
 	void printRingGraph();
 	int ifExist[26][26];
-	void print(string* ary, int n);
+	void print(vector <string> ary);
 private:
 	string path;
 	//bool cmpLen(const node &str1, const node &str2);
