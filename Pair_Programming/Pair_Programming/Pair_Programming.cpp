@@ -8,6 +8,7 @@
 #include "DFS.h"
 #include <string>
 #include <vector>
+#include "RingDFS.h"
 
 using namespace std;
 
@@ -28,9 +29,11 @@ int main(int argc, char * argv[])
 	DFS dfs(pp);
 	vector < vector<string> > ans;
 	for (i=0;i<26)*/
-	PreProcess pp("input.txt");
+	Input input = Input("-w input.txt");
+	PreProcess pp(input.getPath());
 	DFS dfs = DFS(pp);
-	vector<string>r;
+	RingDFS rd(pp);
+	/*vector<string>r;
 	//r = dfs.findMax();
 	dfs.getGraph();
 	dfs.hasRing();
@@ -45,7 +48,14 @@ int main(int argc, char * argv[])
 	//	cout << r[i++] << endl;
 	//}
 
-	system("pause");
+	system("pause");*/
+	//dfs.hasRing();
+	vector <string> ans = rd.initDFS(input.getMode(), input.getHead(), input.getTail(), input.getIfRing());
+	for (int i = 0; i < ans.size(); i++)
+	{
+		cout << ans[i] << endl;
+	}
+
 }
 
 // 运行程序: Ctrl + F5 或调试 >“开始执行(不调试)”菜单
