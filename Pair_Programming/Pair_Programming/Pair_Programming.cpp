@@ -9,6 +9,9 @@
 #include <string>
 #include <vector>
 #include "RingDFS.h"
+#include "Core.h"
+#include <cstring>
+#include <string.h>
 
 using namespace std;
 
@@ -29,10 +32,8 @@ int main(int argc, char * argv[])
 	DFS dfs(pp);
 	vector < vector<string> > ans;
 	for (i=0;i<26)*/
-	Input input = Input("-w input.txt");
-	PreProcess pp(input.getPath());
-	DFS dfs = DFS(pp);
-	RingDFS rd(pp);
+	
+
 	/*vector<string>r;
 	//r = dfs.findMax();
 	dfs.getGraph();
@@ -49,6 +50,13 @@ int main(int argc, char * argv[])
 	//}
 
 	system("pause");*/
+
+
+	//====================================================
+	/*Input input = Input("-w input.txt");
+	PreProcess pp(input.getPath());
+	DFS dfs = DFS(pp);
+	RingDFS rd(pp);
 	dfs.getGraph();
 	dfs.hasRing();
 	vector <string> ans = rd.initDFS(input.getMode(), input.getHead(), input.getTail(), input.getIfRing());
@@ -56,7 +64,25 @@ int main(int argc, char * argv[])
 	{
 		cout << ans[i] << endl;
 	}
-	pp.print(ans);
+	pp.print(ans);*/
+
+	char* words[10000];
+	/*for (int i = 0; i < 10000; i++) {
+		words[i] = new char(100);
+	}*/
+	Input input = Input("-c input.txt");
+	PreProcess pp(input.longStr, 1, words);
+	Core core = Core();
+	char* result[60];
+	if (input.getMode() == 1)
+	{
+		core.gen_chain_word(words, pp.wordn, result, input.getHead(), input.getTail(), input.getIfRing());
+	}
+	else
+	{
+		core.gen_chain_char(words, pp.wordn, result, input.getHead(), input.getTail(), input.getIfRing());
+	}
+	
 }
 
 // 运行程序: Ctrl + F5 或调试 >“开始执行(不调试)”菜单

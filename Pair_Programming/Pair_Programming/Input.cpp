@@ -3,6 +3,9 @@
 #include <string>
 #include "Input.h"
 #include "Error.h"
+#include <fstream>
+#include <iostream>
+#include <sstream>
 
 using namespace std;
 
@@ -132,4 +135,23 @@ Input::Input(string str)
 	head = 0;
 	tail = 0;
 	ProcessInput();
+	getTxt(path, 1);
 }
+
+
+void Input::getTxt(string str, int file)
+{
+	if (file == 1)
+	{
+		ifstream ifile(str);
+		ostringstream oss;
+		if (!ifile)
+		{
+			Error("File Doesnt Exist");
+		}
+		oss << ifile.rdbuf();
+		longStr = oss.str();
+	}
+
+}
+

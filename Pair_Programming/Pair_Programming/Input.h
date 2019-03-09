@@ -14,13 +14,13 @@ private:
 	int ifRing;
 	int head;
 	int tail;
-
 	void ProcessInput();
-
+	void getTxt(string str, int file);   // file==0 : str to words    file==1 : file from path str to words
 public:
 	Input(int num, char * paras[]);
 	Input(string str);
-
+	
+	string longStr;
 	int getMode() 
 	{
 		return mode;
