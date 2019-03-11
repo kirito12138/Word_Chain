@@ -7,6 +7,7 @@ using namespace std;
 
 void Error(string str)
 {
-	cout << "Error:" << str << "!\n" << endl;
-	exit(0);
+	throw(str);
+	//cout << "Error:" << str << "!\n" << endl;
+	//exit(0);
 }

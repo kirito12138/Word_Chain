@@ -275,7 +275,7 @@ vector <string> RingDFS::initDFS(int mode, int head, int tail, int ring)
 				}
 				mR = -1;
 				for (i = 0; i < curGraph[curH].size(); i++) {
-					if (maxRoute[curGraph[curH][i].name[curGraph[curH][i].len -1] -'a'] > mR)
+					if (maxRoute[curGraph[curH][i].name[curGraph[curH][i].len -1] -'a'] > mR )
 					{
 						curT = curGraph[curH][i].name[curGraph[curH][i].len -1] - 'a';
 						mR = maxRoute[curGraph[curH][i].name[curGraph[curH][i].len - 1] - 'a'];

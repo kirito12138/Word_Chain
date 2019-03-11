@@ -65,22 +65,35 @@ int main(int argc, char * argv[])
 		cout << ans[i] << endl;
 	}
 	pp.print(ans);*/
-
-	char* words[10000];
-	/*for (int i = 0; i < 10000; i++) {
-		words[i] = new char(100);
-	}*/
-	Input input = Input("-c input.txt");
-	PreProcess pp(input.longStr, 1, words);
-	Core core = Core();
-	char* result[60];
-	if (input.getMode() == 1)
+	try
 	{
-		core.gen_chain_word(words, pp.wordn, result, input.getHead(), input.getTail(), input.getIfRing());
+		char*words[10000];
+		/*for (int i = 0; i < 10000; i++) {
+			words[i] = new char(100);
+		}*/
+		Input input = Input("-w -t f hard.txt");
+		PreProcess pp(input.longStr, 1, words, input.getIfRing());
+		DFS dfs(pp);
+		dfs.getGraph();
+		if (dfs.hasRing() == true && input.getIfRing() == 0)
+		{
+			Error("Ring Detected!");
+		}
+		
+		Core core = Core();
+		char* result[60];
+		if (input.getMode() == 1)
+		{
+			core.gen_chain_word(words, pp.wordn, result, input.getHead(), input.getTail(), input.getIfRing());
+		}
+		else
+		{
+			core.gen_chain_char(words, pp.wordn, result, input.getHead(), input.getTail(), input.getIfRing());
+		}
 	}
-	else
+	catch (string str)
 	{
-		core.gen_chain_char(words, pp.wordn, result, input.getHead(), input.getTail(), input.getIfRing());
+		cout << str << endl;
 	}
 	
 }

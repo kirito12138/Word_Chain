@@ -6,9 +6,12 @@
 #include <fstream>
 #include <iostream>
 #include <sstream>
-
+#include <windows.h>
 using namespace std;
+Input::Input()
+{
 
+}
 void Input::ProcessInput()
 {
 	int pt = 0;
@@ -147,6 +150,9 @@ void Input::getTxt(string str, int file)
 		ostringstream oss;
 		if (!ifile)
 		{
+			ofstream slt("solution.txt");
+			slt << str << endl;
+			slt.close();
 			Error("File Doesnt Exist");
 		}
 		oss << ifile.rdbuf();

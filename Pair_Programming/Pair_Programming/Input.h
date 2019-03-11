@@ -19,7 +19,7 @@ private:
 public:
 	Input(int num, char * paras[]);
 	Input(string str);
-	
+	Input();
 	string longStr;
 	int getMode() 
 	{

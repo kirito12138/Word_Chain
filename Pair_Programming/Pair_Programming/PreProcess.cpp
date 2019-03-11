@@ -10,14 +10,16 @@
 #include <algorithm>
 #include <set>
 #include <cstring>
+#include "Input.h"
 using namespace std;
 PreProcess::PreProcess()
 {
 
 }
-PreProcess::PreProcess(string str)
+PreProcess::PreProcess(string str, int r)
 {
 	this->path = str;
+	ring = r;
 	ringGraph.resize(26);
 	graph.resize(26);
 	GenGraph();
@@ -27,9 +29,17 @@ PreProcess::PreProcess(string str)
 	}*/
 	
 }
-PreProcess::PreProcess(string str, int f, char* words[])
+PreProcess::PreProcess(string str, int f, char* words[], int r)
 {
 	int n;
+	for (int i = 0; i < 26; i++)
+	{
+		for (int j = 0; j < 26; j++)
+		{
+			ifExist[i][j] = 0;
+		}
+	}
+	ring = r;
 	ringGraph.resize(26);
 	graph.resize(26);
 	n = strToWords(str, words);
@@ -37,14 +47,20 @@ PreProcess::PreProcess(string str, int f, char* words[])
 	{
 		cout << words[i] << endl;
 	}*/
-	//strToVector();
+	strToVector(words);
 	//printGraph();
 
 }
-PreProcess::PreProcess(char* wordss[], int len)
+PreProcess::PreProcess(char* wordss[], int len, int r)
 {
-	ringGraph.clear();
-	graph.clear();
+	for (int i = 0; i < 26; i++)
+	{
+		for (int j = 0; j < 26; j++)
+		{
+			ifExist[i][j] = 0;
+		}
+	}
+	ring = r;
 	ringGraph.resize(26);
 	//cout << "22222222222222" << endl;
 	graph.resize(26);
@@ -95,12 +111,13 @@ void PreProcess::GenGraph()
 			h = newN.name[0] - 'a';
 			t = newN.name[i - wordBegin - 1] - 'a';
 			ringGraph[h].push_back(newN);
+			if (ifExist[h][t] != 0&& h == t && ring == 0)
+			{
+				Error("Multiple Self Ring Found");
+			}
 			if ((i - wordBegin) > ifExist[h][t] && ifExist[h][t]!=0)
 			{
-				if (h == t)
-				{
-					Error("Multiple Self Ring Found");
-				}
+				
 				ifExist[h][t] = i - wordBegin;
 				graphn = graph[h].size();
 				for (j = 0; j < graphn; j++) 
@@ -190,16 +207,18 @@ void PreProcess::strToVector(char* words[])
 	{
 		//cout << words[i] << endl;
 		string ss = words[i];
+		//cout << ss << endl;
 		node newN = { ss, (PreProcess::ringNum)++, ss.size() };
 		h = newN.name[0] - 'a';
 		t = newN.name[ss.size() - 1] - 'a';
 		ringGraph[h].push_back(newN);
+		if (ifExist[h][t] != 0 && h == t && ring == 0)
+		{
+			Error("Multiple Self Ring Found");
+		}
 		if ((strlen(words[i])) > ifExist[h][t] && ifExist[h][t] != 0)
 		{
-			if (h == t)
-			{
-				Error("Multiple Self Ring Found");
-			}
+			
 			ifExist[h][t] = strlen(words[i]);
 			graphn = graph[h].size();
 			for (j = 0; j < graphn; j++)
@@ -222,10 +241,10 @@ void PreProcess::strToVector(char* words[])
 			continue;
 		}
 	}
-	for (i = 0; i < len; i++)
+	/*for (i = 0; i < len; i++)
 	{
 		free(words[i]);
-	}
+	}*/
 	if (PreProcess::num <= 1)
 	{
 		Error("No Word Chain in File");

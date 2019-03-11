@@ -95,7 +95,7 @@ void DFS::notDFS(int start) {
 				tmp = graph[u][i].name[tmp - 1] - 'a';
 				if (dist[tmp] < dist[u] + graph[u][i].len) {
 					//route1[u] = i;
-					route2[u] = tmp;
+					//route2[u] = tmp;
 					dist[tmp] = dist[u] + graph[u][i].len;
 					if (dist[tmp] > len) {
 						len = dist[tmp];
@@ -103,15 +103,14 @@ void DFS::notDFS(int start) {
 				}
 			}
 		}
-
 	}
-	//if (len > maxLen) {
-	//	maxLen = len;
-	//	result.clear();
-	//	for (int i = start; route2[i] != -1; i = route2[i]) {
-	//		result.push_back( graph[i][route1[i]].name );
-	//	}
-	//}
+	if (len > maxLen) {
+		maxLen = len;
+		//result.clear();
+		//for (int i = start; route2[i] != -1; i = route2[i]) {
+		//	result.push_back( graph[i][route1[i]].name );
+		//}
+	}
 	
 }
 

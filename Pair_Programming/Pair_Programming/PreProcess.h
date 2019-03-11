@@ -4,6 +4,7 @@
 #include <vector>
 #include <iostream>
 #include "Error.h"
+#include "Input.h"
 
 using namespace std;
 
@@ -11,14 +12,14 @@ class PreProcess
 {
 public:
 	PreProcess();
-	PreProcess(char* wordss[], int len);
-	PreProcess(string str, int n, char* words[]);
+	PreProcess(char* wordss[], int len, int r);
+	PreProcess(string str, int n, char* words[], int r);
 	static int ringNum;
 	static int num;
 	vector< vector<node> > ringGraph;
 	vector< vector<node> > graph;
 	int wordn;
-	PreProcess(string str);
+	PreProcess(string str, int r);
 	~PreProcess();
 	void printGraph();
 	void printRingGraph();
@@ -27,6 +28,7 @@ public:
 	void VecToStr(char* result[], vector <string> ans);
 	
 private:
+	int ring;
 	string path;
 	//bool cmpLen(const node &str1, const node &str2);
 	void GenGraph();
