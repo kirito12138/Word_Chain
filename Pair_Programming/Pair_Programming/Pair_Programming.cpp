@@ -1,6 +1,6 @@
 ﻿// Pair_Programming.cpp : 此文件包含 "main" 函数。程序执行将在此处开始并结束。
 //
-
+#pragma warning(suppress : 4996)
 #include "pch.h"
 #include <iostream>
 #include "Input.h"
@@ -30,22 +30,23 @@ int main(int argc, char * argv[])
 	for (i=0;i<26)*/
 	PreProcess pp("input.txt");
 	DFS dfs = DFS(pp);
-	vector<string>r;
+	//vector<string>r;
 	//r = dfs.findMax();
 	dfs.getGraph();
-	dfs.hasRing();
-	for (int i = 0; i < 26; i++) {
-		dfs.notDFS(i);
-	}
-	for (int i = 0; i < dfs.getResult().size(); i++) {
-		cout << dfs.getResult()[i] << endl;
-	}
+	cout << dfs.hasRing();
+	
+
+	//dfs.findMax();
+	//475
+
+	//for (int i = 0; i < 26; i++) {
+	//	dfs.notDFS(i);
+	//}
+	//cout << dfs.getMaxLen() << endl;
 	//int i = 0;
 	//while (i < r.size()) {
 	//	cout << r[i++] << endl;
 	//}
-
-	system("pause");
 }
 
 // 运行程序: Ctrl + F5 或调试 >“开始执行(不调试)”菜单
