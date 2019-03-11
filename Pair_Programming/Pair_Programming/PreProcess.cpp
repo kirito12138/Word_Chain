@@ -93,6 +93,13 @@ void PreProcess::GenGraph()
 	{
 		Error("Input File Doesn't Exit");
 	}
+	for (int i = 0; i < 26; i++)
+	{
+		for (int j = 0; j < 26; j++)
+		{
+			ifExist[i][j] = 0;
+		}
+	}
 	while (file >> temp)
 	{
 		tempn = temp.size();
@@ -142,7 +149,7 @@ void PreProcess::GenGraph()
 		}
 	}
 	file.close();
-	if (PreProcess::num <= 1)
+	if ((PreProcess::num <= 1 && ring==0) || PreProcess::ringNum <= 1)
 	{
 		Error("No Word Chain in File");
 	}
@@ -332,5 +339,5 @@ int PreProcess::strToWords(string temp, char* words[])
 	wordn = count;
 	return count;
 }
-int PreProcess::num = 0;
-int PreProcess::ringNum = 0;
+//int PreProcess::num = 0;
+//int PreProcess::ringNum = 0;

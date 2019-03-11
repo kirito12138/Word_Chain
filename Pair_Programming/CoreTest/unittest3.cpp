@@ -4,12 +4,12 @@
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace CoreTest
-{		
-	TEST_CLASS(UnitTest1)
+{
+	TEST_CLASS(UnitTest3)
 	{
 	public:
-		
-		TEST_METHOD(TestMethod1)
+
+		TEST_METHOD(TestMethod3)
 		{
 			// TODO: ‘⁄¥À ‰»Î≤‚ ‘
 			int ansLen;
@@ -19,7 +19,7 @@ namespace CoreTest
 				/*for (int i = 0; i < 10000; i++) {
 					words[i] = new char(100);
 				}*/
-				Input input = Input("-w ..\\Pair_Programming\\hard.txt");
+				Input input = Input("-w -h d ..\\Pair_Programming\\hard.txt");
 				PreProcess pp(input.longStr, 1, words, input.getIfRing());
 				Core core = Core();
 				char* result[60];
@@ -31,7 +31,7 @@ namespace CoreTest
 			{
 				cout << str << endl;
 			}
-			Assert::AreEqual(29, ansLen);
+			Assert::AreEqual(27, ansLen);
 		}
 
 	};

@@ -13,17 +13,19 @@ public:
 	~DFS();
 	DFS(PreProcess pp);
 	void getGraph();
-	void DFSroute(int len, int start, int lastLetter, int endLetter);
 	bool hasRing();
-	int getMaxLen();
-	vector<string> getResult();
+	
 	vector<vector<node>> graph;
-	void setEndLetter(int num);
-	vector<string> findMax();
-	vector<string> findMax(bool SorE, char letter);
-
-	void notDFS(int start);
+	
+	
 private:
+	//int getMaxLen();
+	//void DFSroute(int len, int start, int lastLetter, int endLetter);
+	//vector<string> getResult();
+	//vector<string> findMax();
+	//vector<string> findMax(bool SorE, char letter);
+	//void setEndLetter(int num);
+	//void notDFS(int start);
 	vector<string> result;
 	int maxLen;
 	int endLetter;

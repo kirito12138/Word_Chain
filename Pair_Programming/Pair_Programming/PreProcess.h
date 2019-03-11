@@ -13,13 +13,13 @@ class PreProcess
 public:
 	PreProcess();
 	PreProcess(char* wordss[], int len, int r);
-	PreProcess(string str, int n, char* words[], int r);
-	static int ringNum;
-	static int num;
+	PreProcess(string str, int n, char* words[], int r); //str: whole txt file, generate words and graph
+	int ringNum = 0;
+	int num = 0;
 	vector< vector<node> > ringGraph;
 	vector< vector<node> > graph;
 	int wordn;
-	PreProcess(string str, int r);
+	PreProcess(string str, int r);   //str:path  r:ifRing  generate vector graph
 	~PreProcess();
 	void printGraph();
 	void printRingGraph();

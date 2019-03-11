@@ -23,14 +23,14 @@ DFS::~DFS()
 
 DFS::DFS(PreProcess pp) {
 	maxLen = 0;
-	tellRepeat.resize(PreProcess::ringNum);
+	tellRepeat.resize(pp.ringNum);
 	PreP = pp;
 }
 void DFS::getGraph() {
 	this->graph = PreP.graph;
 }
 
-vector<string> DFS::findMax() {
+/*vector<string> DFS::findMax() {
 	this->getGraph();
 	bool r = this->hasRing();
 	if (r) {
@@ -66,13 +66,13 @@ vector<string> DFS::findMax(bool SorE , char letter) {
 		}
 	}
 	return this->getResult();
-}
+}*/
 
 /*
 initial:
 end = 26 or x - 'a'
 */
-void DFS::notDFS(int start) {
+/*void DFS::notDFS(int start) {
 	int route1[26];//±£¥Ê¡À graph[i][route[i]]
 	int route2[26];
 	int len = -1;
@@ -139,7 +139,7 @@ void DFS::DFSroute(int len, int start, int lastLetter ,int endLetter)
 		result = route;
 	}
 	
-}
+}*/
 bool DFS::hasRing()
 {
 	int i;
@@ -182,7 +182,7 @@ bool DFS::hasRing()
 	}
 	return true;
 }
-int DFS::getMaxLen() {
+/*int DFS::getMaxLen() {
 	return maxLen;
 }
 vector<string> DFS::getResult() {
@@ -190,4 +190,4 @@ vector<string> DFS::getResult() {
 }
 void DFS::setEndLetter(int num) {
 	this->endLetter = num;
-}
+}*/
