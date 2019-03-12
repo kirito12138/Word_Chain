@@ -5,6 +5,7 @@ using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace CoreTest
 {
+
 	TEST_CLASS(UnitTest3)
 	{
 	public:

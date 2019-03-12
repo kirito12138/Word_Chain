@@ -29,7 +29,7 @@ int Core::gen_chain_word(char* words[], int len, char* result[], char head, char
 	//ppa.printGraph();
 	dfs.getGraph();
 	dfs.hasRing(enable_loop);
-
+	//ppa.printRingGraph();
 	vector <string> ans = rd.initDFS(1, head, tail, enable_loop);
 	ppa.VecToStr(result, ans);
 	ppa.print(ans);

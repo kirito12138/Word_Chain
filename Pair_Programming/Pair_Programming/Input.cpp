@@ -128,6 +128,7 @@ Input::Input(int num, char * paras[])
 	head = 0;
 	tail = 0;
 	ProcessInput();
+	getTxt(path, 1);
 }
 
 Input::Input(string str)

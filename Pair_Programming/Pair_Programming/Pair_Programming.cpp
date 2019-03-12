@@ -15,7 +15,7 @@
 
 using namespace std;
 
-
+char*words[10000];
 int main(int argc, char * argv[])
 {
     //std::cout << "Hello World!\n"; 
@@ -67,15 +67,13 @@ int main(int argc, char * argv[])
 	pp.print(ans);*/
 	try
 	{
-		char*words[10000];
+		
 		/*for (int i = 0; i < 10000; i++) {
 			words[i] = new char(100);
 		}*/
-		Input input = Input("-w -r input.txt");
+		//Input input = Input("-w hard.txt");
+		Input input = Input(argc, argv);
 		PreProcess pp(input.longStr, 1, words, input.getIfRing());
-		DFS dfs(pp);
-		dfs.getGraph();
-		dfs.hasRing(input.getIfRing());
 		Core core = Core();
 		char* result[60];
 		if (input.getMode() == 1)

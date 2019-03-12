@@ -10,10 +10,10 @@ class Input
 private:
 	string inputString;
 	string path;
-	int mode;   //0:default   1:word   2:letter
-	int ifRing;
-	int head;
-	int tail;
+	int mode=0;   //0:default   1:word   2:letter
+	int ifRing=0;
+	int head=0;
+	int tail=0;
 	void ProcessInput();
 	void getTxt(string str, int file);   // file==0 : str to words    file==1 : file from path str to words
 public:

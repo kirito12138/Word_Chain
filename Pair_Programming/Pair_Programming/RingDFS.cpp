@@ -137,7 +137,7 @@ vector <string> RingDFS::initDFS(int mode, int head, int tail, int ring)
 					tempAns.resize(0);
 					//tempAns.push_back(preP.ringGraph[i][j].name);
 					
-					if (curGraph[i].size() > outDegree[i])
+					if (int(curGraph[i].size()) > outDegree[i])
 					{
 						if (DEBUG == 1)
 						{
@@ -246,7 +246,7 @@ vector <string> RingDFS::initDFS(int mode, int head, int tail, int ring)
 			{
 				//cout << char(curT + 'a') << endl;
 			
-				for (i = 0; i < curGraph[curH].size(); i++)
+				for (i = 0; i < int(curGraph[curH].size()); i++)
 				{
 					if (curGraph[curH][i].name[curGraph[curH][i].len - 1] - 'a' == mI)
 					{
@@ -262,7 +262,7 @@ vector <string> RingDFS::initDFS(int mode, int head, int tail, int ring)
 				}
 				if (preP.ifExist[curT][curT] > 0)
 				{
-					for (int k = 0; k < curGraph[curT].size(); k++)
+					for (int k = 0; k < int(curGraph[curT].size()); k++)
 					{
 						if (curGraph[curT][k].name[curGraph[curT][k].len - 1] - 'a' == curT)
 						{
@@ -281,7 +281,7 @@ vector <string> RingDFS::initDFS(int mode, int head, int tail, int ring)
 					break;
 				}
 				mR = -1;
-				for (i = 0; i < curGraph[curH].size(); i++) {
+				for (i = 0; i < int(curGraph[curH].size()); i++) {
 					if (maxRoute[curGraph[curH][i].name[curGraph[curH][i].len -1] -'a'] > mR )
 					{
 						curT = curGraph[curH][i].name[curGraph[curH][i].len -1] - 'a';
@@ -421,12 +421,12 @@ void RingDFS::optDFS(int beginI, int beginJ, int mode, int tail)
 
 void RingDFS::UpdateOutDegree()
 {
-	int i, j;
+	int i;
 	for (i = 0; i < 26; i++)
 	{
 		outDegree[i] = 0;
 	}
-	for (i = 0; i < maxAns.size(); i++)
+	for (i = 0; i < int(maxAns.size()); i++)
 	{
 		outDegree[maxAns[i][0] - 'a']++;
 	}

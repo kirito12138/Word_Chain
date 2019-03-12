@@ -22,11 +22,13 @@ PreProcess::PreProcess(string str, int r)
 	ring = r;
 	ringGraph.resize(26);
 	graph.resize(26);
-	GenGraph();
-	/*for (int i = 0; i < ringNum; i++)
+	checkR.resize(26);
+	for (int i = 0; i < 26; i++)
 	{
-		ifCheck.push_back(0);
-	}*/
+		checkR[i].resize(26);
+	}
+	GenGraph();
+	
 	
 }
 PreProcess::PreProcess(string str, int f, char* words[], int r)
@@ -42,6 +44,11 @@ PreProcess::PreProcess(string str, int f, char* words[], int r)
 	ring = r;
 	ringGraph.resize(26);
 	graph.resize(26);
+	checkR.resize(26);
+	for (int i = 0; i < 26; i++)
+	{
+		checkR[i].resize(26);
+	}
 	n = strToWords(str, words);
 	/*for (int i = 0; i < n; i++)
 	{
@@ -65,6 +72,11 @@ PreProcess::PreProcess(char* wordss[], int len, int r)
 	//cout << "22222222222222" << endl;
 	graph.resize(26);
 	wordn = len;
+	checkR.resize(26);
+	for (int i = 0; i < 26; i++)
+	{
+		checkR[i].resize(26);
+	}
 	strToVector(wordss);
 	//printGraph();
 	
@@ -89,6 +101,7 @@ void PreProcess::GenGraph()
 	int i, j;
 	int wordBegin = 0;
 	int h, t;
+	int repeated = 0;
 	if (!file)
 	{
 		Error("Input File Doesn't Exit");
@@ -117,7 +130,24 @@ void PreProcess::GenGraph()
 			node newN = { temp.substr(wordBegin, i - wordBegin), (PreProcess::ringNum)++, i - wordBegin };
 			h = newN.name[0] - 'a';
 			t = newN.name[i - wordBegin - 1] - 'a';
-			ringGraph[h].push_back(newN);
+			repeated = 0;
+			if (ifExist[h][t] != 0)
+			{
+				for (j = 0; j<int(checkR[h][t].size()); j++)
+				{
+					if (newN.name.compare(checkR[h][t][j]) == 0)
+					{
+						repeated = 1;
+						break;
+					}
+				}
+			}
+			if (repeated == 0)
+			{
+				ringGraph[h].push_back(newN);
+				checkR[h][t].push_back(newN.name);
+			}
+			
 			if (ifExist[h][t] != 0&& h == t && ring == 0)
 			{
 				Error("Multiple Self Ring Found");
@@ -196,7 +226,7 @@ void PreProcess::printRingGraph() {
 void PreProcess::print(vector <string> ary)
 {
 	ofstream slt("solution.txt");
-	int i;
+	unsigned int i;
 	for (i = 0; i < ary.size(); i++)
 	{
 		slt << ary[i] << endl;
@@ -210,20 +240,38 @@ void PreProcess::strToVector(char* words[])
 	int graphn;
 	int h, t;
 	int len = wordn;
+	int repeated = 0;
 	for (i = 0; i < len; i++)
 	{
 		//cout << words[i] << endl;
 		string ss = words[i];
 		//cout << ss << endl;
-		node newN = { ss, (PreProcess::ringNum)++, ss.size() };
+		node newN = { ss, (PreProcess::ringNum)++, int(ss.size()) };
 		h = newN.name[0] - 'a';
 		t = newN.name[ss.size() - 1] - 'a';
-		ringGraph[h].push_back(newN);
+		
+		repeated = 0;
+		if (ifExist[h][t] != 0)
+		{
+			for (j = 0; j<int(checkR[h][t].size()); j++)
+			{
+				if (newN.name.compare(checkR[h][t][j]) == 0)
+				{
+					repeated = 1;
+					break;
+				}
+			}
+		}
+		if (repeated == 0)
+		{
+			ringGraph[h].push_back(newN);
+			checkR[h][t].push_back(ss);
+		}
 		if (ifExist[h][t] != 0 && h == t && ring == 0)
 		{
 			Error("Multiple Self Ring Found");
 		}
-		if ((strlen(words[i])) > ifExist[h][t] && ifExist[h][t] != 0)
+		if (int((strlen(words[i]))) > ifExist[h][t] && ifExist[h][t] != 0)
 		{
 			
 			ifExist[h][t] = strlen(words[i]);
@@ -259,13 +307,14 @@ void PreProcess::strToVector(char* words[])
 	for (i = 0; i < 26; i++)
 	{
 		sort(ringGraph[i].begin(), ringGraph[i].end(), &cmpLen);
+		
 	}
 }
 
 void PreProcess::VecToStr(char* result[], vector <string> ans)
 {
 	int i = 0, j=0;
-	for (i = 0; i < ans.size(); i++)
+	for (i = 0; i < int(ans.size()); i++)
 	{
 		const int len = ans[i].length();
 		result[i] = new char[len + 1];
@@ -283,10 +332,8 @@ void PreProcess::VecToStr(char* result[], vector <string> ans)
 int PreProcess::strToWords(string temp, char* words[])
 {
 	int i = 0, j = 0;
-	int graphn;
-	int h, t;
 	int tempn = temp.size();
-	int count = 0;
+	unsigned int count = 0;
 	int wordBegin;
 	char singleWord[500];
 	
@@ -305,17 +352,17 @@ int PreProcess::strToWords(string temp, char* words[])
 		//word = temp.substr(wordBegin, i - wordBegin);
 		//const int ll = word.length();
 		
-		const int ll = i - wordBegin;
+		const unsigned int ll = i - wordBegin;
 		
 		//strcpy_s(words[count], ll+1, word.c_str());
-		for (j = 0; j < ll; j++)
+		for (j = 0; j < int(ll); j++)
 		{
 			singleWord[j] = temp[wordBegin + j];
 		}
 		//words[count][ll] = '\0';
 		singleWord[ll] = '\0';
-		//words[count] = new char(ll+1);
-		words[count] = (char *)malloc(sizeof(char) * (ll + 1));
+		words[count] = new char[ll+1];
+		//words[count] = (char *)malloc(sizeof(char) * (ll + 1));
 		strcpy_s(words[count], ll + 1, singleWord);
 		count++;
 		/*h = temp[wordBegin] - 'a';
