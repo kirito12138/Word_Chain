@@ -36,7 +36,7 @@ namespace PrePandRingDFSTest
 			DFS dfs = DFS(pp);
 			RingDFS rd(pp);
 			dfs.getGraph();
-			dfs.hasRing();
+			dfs.hasRing(0);
 			vector <string> ans = rd.initDFS(input.getMode(), input.getHead(), input.getTail(), input.getIfRing());
 			int l = ans.size();
 			Assert::AreEqual(5, l);

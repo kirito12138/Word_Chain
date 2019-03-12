@@ -13,7 +13,7 @@ public:
 	~DFS();
 	DFS(PreProcess pp);
 	void getGraph();
-	bool hasRing();
+	bool hasRing(int ring);
 	
 	vector<vector<node>> graph;
 	

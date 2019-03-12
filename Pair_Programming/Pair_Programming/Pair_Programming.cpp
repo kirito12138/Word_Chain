@@ -71,15 +71,11 @@ int main(int argc, char * argv[])
 		/*for (int i = 0; i < 10000; i++) {
 			words[i] = new char(100);
 		}*/
-		Input input = Input("-w -t f hard.txt");
+		Input input = Input("-w -r input.txt");
 		PreProcess pp(input.longStr, 1, words, input.getIfRing());
 		DFS dfs(pp);
 		dfs.getGraph();
-		if (dfs.hasRing() == true && input.getIfRing() == 0)
-		{
-			Error("Ring Detected!");
-		}
-		
+		dfs.hasRing(input.getIfRing());
 		Core core = Core();
 		char* result[60];
 		if (input.getMode() == 1)

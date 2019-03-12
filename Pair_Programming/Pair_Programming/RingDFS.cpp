@@ -27,7 +27,7 @@ RingDFS::RingDFS(PreProcess pp)
 	}
 }
 
-void RingDFS::ringDFS(int beginI, int beginJ, vector <string> &maxAns, vector <string> &tempAns, int tempLen, int mode, int tail)
+void RingDFS::ringDFS(int beginI, int beginJ, int tempLen, int mode, int tail)
 {
 	//cout << curGraph[beginI][beginJ].name << endl;
 	int curTail = curGraph[beginI][beginJ].name[curGraph[beginI][beginJ].len - 1] - 'a';
@@ -42,33 +42,34 @@ void RingDFS::ringDFS(int beginI, int beginJ, vector <string> &maxAns, vector <s
 		if (ifCheck[curGraph[curTail][i].num] == 0)
 		{
 			edgeCount++;
-			if (fff == 1 && curTail == 'e' - 'a')
+			/*if (fff == 1 && curTail == 'e' - 'a')
 			{
 				cout << curGraph[curTail][i].name << endl;
-			}
-			ringDFS(curTail, i, maxAns, tempAns, tempLen, mode, tail);
+			}*/
+			ringDFS(curTail, i, tempLen, mode, tail);
 
 			
 		}
 		
 	}
-	if (DEBUG == 1)
+	/*if (DEBUG == 1)
 	{
 		//cout << preP.ringGraph[beginI][beginJ].name << "     " << edgeCount << endl;
-	}
+	}*/
 	if (tail == 0)
 	{
 		if (edgeCount == 0)
 		{
-			if (DEBUG == 1)
+			/*if (DEBUG == 1)
 			{
 				cout << tempLen << "<<temp       max>>" << letterLen << endl;
 				cout << maxAns.size() << endl;
-			}
+			}*/
 			if (tempLen > letterLen)
 			{
 				maxAns = tempAns;
 				letterLen = tempLen;
+				UpdateOutDegree();
 			}
 
 		}
@@ -81,6 +82,7 @@ void RingDFS::ringDFS(int beginI, int beginJ, vector <string> &maxAns, vector <s
 			{
 				maxAns = tempAns;
 				letterLen = tempLen;
+				UpdateOutDegree();
 			}
 		}
 	}
@@ -91,8 +93,8 @@ void RingDFS::ringDFS(int beginI, int beginJ, vector <string> &maxAns, vector <s
 
 vector <string> RingDFS::initDFS(int mode, int head, int tail, int ring)
 {
-	vector <string> tempAns;
-	vector <string> maxAns;
+	//vector <string> tempAns;
+	//vector <string> maxAns;
 	if (ring == 0)
 	{
 		curGraph = preP.graph;
@@ -108,6 +110,7 @@ vector <string> RingDFS::initDFS(int mode, int head, int tail, int ring)
 	int i = 0, j = 0;
 	int vecLen;
 	maxAns.resize(0);
+	UpdateOutDegree();
 	if (head != 0 && ring == 1) {
 		vecLen = curGraph[head - 'a'].size();
 			for (i = 0; i < vecLen; i++)
@@ -116,7 +119,7 @@ vector <string> RingDFS::initDFS(int mode, int head, int tail, int ring)
 				//tempAns.push_back(preP.ringGraph[head - 'a'][i].name);
 				
 				int l = (mode == 1) ? 1 : curGraph[head - 'a'][i].len;
-				ringDFS(head - 'a', i, maxAns, tempAns, 0, mode, tail);
+				ringDFS(head - 'a', i, 0, mode, tail);
 			}
 	}
 	else
@@ -133,13 +136,17 @@ vector <string> RingDFS::initDFS(int mode, int head, int tail, int ring)
 
 					tempAns.resize(0);
 					//tempAns.push_back(preP.ringGraph[i][j].name);
-					if (DEBUG == 1)
+					
+					if (curGraph[i].size() > outDegree[i])
 					{
-						cout << "start:  " << curGraph[i][j].name << endl;
+						if (DEBUG == 1)
+						{
+							cout << "start:  " << curGraph[i][j].name << endl;
+						}
+						int l = (mode == 1) ? 1 : curGraph[i][j].len;
+						ringDFS(i, j, 0, mode, tail);
 					}
-
-					int l = (mode == 1) ? 1 : curGraph[i][j].len;
-					ringDFS(i, j, maxAns, tempAns, 0, mode, tail);
+					
 					/*if (ifExist[i][j] != 0)
 					{
 						ifBegin = 1;
@@ -410,4 +417,18 @@ void RingDFS::optDFS(int beginI, int beginJ, int mode, int tail)
 	ifCheck[curGraph[beginI][beginJ].num] = 0;
 	//tempLen -= (mode == 1) ? 1 : curGraph[beginI][beginJ].len;
 	
+}
+
+void RingDFS::UpdateOutDegree()
+{
+	int i, j;
+	for (i = 0; i < 26; i++)
+	{
+		outDegree[i] = 0;
+	}
+	for (i = 0; i < maxAns.size(); i++)
+	{
+		outDegree[maxAns[i][0] - 'a']++;
+	}
+
 }

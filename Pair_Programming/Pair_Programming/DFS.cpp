@@ -140,7 +140,7 @@ void DFS::DFSroute(int len, int start, int lastLetter ,int endLetter)
 	}
 	
 }*/
-bool DFS::hasRing()
+bool DFS::hasRing(int ring)
 {
 	int i;
 	queue<int> zeroDArray;//transfer graph to in-degree array
@@ -179,6 +179,10 @@ bool DFS::hasRing()
 
 	if (topoArray.size() == 26) {
 		return false;
+	}
+	if (ring == 0)
+	{
+		Error("Ring Detected When not Allowed");
 	}
 	return true;
 }

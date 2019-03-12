@@ -19,8 +19,12 @@ public:
 	int letterLen;    //total letter num of current route
 	
 private:
+	vector <string> maxAns;
+	vector <string>tempAns;
+	int outDegree[26];
+	void UpdateOutDegree();
 	void printCurGraph();
-	void ringDFS(int beginI, int beginJ, vector <string> &maxAns, vector <string> &tempAns, int tempLen, int mode, int tail);
+	void ringDFS(int beginI, int beginJ, int tempLen, int mode, int tail);
 	void optDFS(int beginI, int beginJ, int mode, int tail);
 	vector <int> ifCheck;
 	PreProcess preP;

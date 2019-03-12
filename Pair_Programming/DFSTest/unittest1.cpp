@@ -18,8 +18,8 @@ namespace DFSTest
 			DFS dfs2(pp2);
 			dfs1.getGraph();
 			dfs2.getGraph();
-			Assert::AreEqual(true, dfs1.hasRing());
-			Assert::AreEqual(false, dfs2.hasRing());
+			Assert::AreEqual(true, dfs1.hasRing(1));
+			Assert::AreEqual(false, dfs2.hasRing(0));
 		}
 
 	};
