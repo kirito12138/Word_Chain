@@ -12,84 +12,61 @@
 #include "Core.h"
 #include <cstring>
 #include <string.h>
+#include <Windows.h>
 
+#define IFDLL 0
 using namespace std;
+
+typedef int(*ptr_word)(char* words[], int len, char* result[], char head, char tail, bool enable_loop);
+typedef int(*ptr_char)(char* words[], int len, char* result[], char head, char tail, bool enable_loop);
+
 
 char*words[10000];
 int main(int argc, char * argv[])
 {
-    //std::cout << "Hello World!\n"; 
-	//Input input = Input(argc, argv);
-	//cout << input.getInput() << endl;
-	//PreProcess pp("input.txt");
-	//pp.printGraph();
-	//pp.printRingGraph();
-	//cout << PreProcess::ringNum << "   " << PreProcess::num << endl;
 
-	/*int i, j, k;
-	Input input = Input(argc, argv);
-	PreProcess pp(input.getPath());
-	DFS dfs(pp);
-	vector < vector<string> > ans;
-	for (i=0;i<26)*/
-	
-
-	/*vector<string>r;
-	//r = dfs.findMax();
-	dfs.getGraph();
-	dfs.hasRing();
-	for (int i = 0; i < 26; i++) {
-		dfs.notDFS(i);
-	}
-	for (int i = 0; i < dfs.getResult().size(); i++) {
-		cout << dfs.getResult()[i] << endl;
-	}
-	//int i = 0;
-	//while (i < r.size()) {
-	//	cout << r[i++] << endl;
-	//}
-
-	system("pause");*/
-
-
-	//====================================================
-	/*Input input = Input("-w input.txt");
-	PreProcess pp(input.getPath());
-	DFS dfs = DFS(pp);
-	RingDFS rd(pp);
-	dfs.getGraph();
-	dfs.hasRing();
-	vector <string> ans = rd.initDFS(input.getMode(), input.getHead(), input.getTail(), input.getIfRing());
-	for (int i = 0; i < ans.size(); i++)
-	{
-		cout << ans[i] << endl;
-	}
-	pp.print(ans);*/
 	try
 	{
-		
-		/*for (int i = 0; i < 10000; i++) {
-			words[i] = new char(100);
-		}*/
-		//Input input = Input("-w hard.txt");
-		Input input = Input(argc, argv);
-		PreProcess pp(input.longStr, 1, words, input.getIfRing());
-		Core core = Core();
-		char* result[60];
-		if (input.getMode() == 1)
+		if (IFDLL == 0)
 		{
-			core.gen_chain_word(words, pp.wordn, result, input.getHead(), input.getTail(), input.getIfRing());
+			Input input = Input(argc, argv);
+			PreProcess pp(input.longStr, 1, words, input.getIfRing());
+			Core core = Core();
+			char* result[60];
+			if (input.getMode() == 1)
+			{
+				core.gen_chain_word(words, pp.wordn, result, input.getHead(), input.getTail(), input.getIfRing());
+			}
+			else
+			{
+				core.gen_chain_char(words, pp.wordn, result, input.getHead(), input.getTail(), input.getIfRing());
+			}
 		}
+		//Input input = Input("-w hard.txt");
 		else
 		{
-			core.gen_chain_char(words, pp.wordn, result, input.getHead(), input.getTail(), input.getIfRing());
+			HINSTANCE CoreDLL = LoadLibrary("Core.dll");
+			ptr_word gen_chain_word = (ptr_word)GetProcAddress(CoreDLL, "gen_chain_word");
+			ptr_char gen_chain_char = (ptr_word)GetProcAddress(CoreDLL, "gen_chain_char");
+			//Input input = Input("-w hard.txt");
+			Input input = Input(argc, argv);
+			PreProcess pp(input.longStr, 1, words, input.getIfRing());
+			char* result[60];
+			if (input.getMode() == 1)
+			{
+				gen_chain_word(words, pp.wordn, result, input.getHead(), input.getTail(), input.getIfRing());
+			}
+			else
+			{
+				gen_chain_char(words, pp.wordn, result, input.getHead(), input.getTail(), input.getIfRing());
+			}
 		}
 	}
 	catch (string str)
 	{
 		cout << str << endl;
 	}
-	
+
 }
 
 // 运行程序: Ctrl + F5 或调试 >“开始执行(不调试)”菜单
