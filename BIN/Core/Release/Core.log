@@ -1,0 +1,17 @@
+﻿  stdafx.cpp
+  Core.cpp
+e:\grade3\rjgc\word_chain\bin\core\core.cpp(3): warning C4603: “CoreDll”: 未定义宏或在预编译头使用后定义发生改变
+  e:\grade3\rjgc\word_chain\bin\core\core.cpp(3): note: 将宏添加到预编译头中，而不是在此处定义
+  e:\grade3\rjgc\word_chain\bin\core\core.cpp(4): note: 使用预编译头
+e:\grade3\rjgc\word_chain\bin\core\core.cpp(900): warning C4273: “gen_chain_word”: dll 链接不一致
+  e:\grade3\rjgc\word_chain\bin\core\core.h(126): note: 参见“gen_chain_word”的前一个定义
+e:\grade3\rjgc\word_chain\bin\core\core.cpp(963): warning C4273: “gen_chain_char”: dll 链接不一致
+  e:\grade3\rjgc\word_chain\bin\core\core.h(127): note: 参见“gen_chain_char”的前一个定义
+  dllmain.cpp
+    正在创建库 E:\Grade3\RJGC\Word_Chain\Pair_Programming\Release\Core.lib 和对象 E:\Grade3\RJGC\Word_Chain\Pair_Programming\Release\Core.exp
+  正在生成代码
+  0 of 895 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  已完成代码的生成
+  Core.vcxproj -> E:\Grade3\RJGC\Word_Chain\Pair_Programming\Release\Core.dll
