@@ -54,6 +54,7 @@ int main(int argc, char * argv[])
 			char* result[60];
 			if (input.getMode() == 1)
 			{
+
 				gen_chain_word(words, pp.wordn, result, input.getHead(), input.getTail(), input.getIfRing());
 			}
 			else

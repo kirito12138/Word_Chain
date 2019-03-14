@@ -16,6 +16,8 @@ PreProcess::PreProcess()
 {
 
 }
+
+
 PreProcess::PreProcess(string str, int r)
 {
 	this->path = str;
@@ -31,6 +33,8 @@ PreProcess::PreProcess(string str, int r)
 	
 	
 }
+
+
 PreProcess::PreProcess(string str, int f, char* words[], int r)
 {
 	int n;

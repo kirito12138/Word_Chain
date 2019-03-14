@@ -7,7 +7,7 @@ typedef int(*ptr_word)(char* words[], int len, char* result[], char head, char t
 typedef int(*ptr_char)(char* words[], int len, char* result[], char head, char tail, bool enable_loop);
 namespace CoreTest
 {
-	HINSTANCE CoreDLL = LoadLibrary("Core.dll");
+	HINSTANCE CoreDLL = LoadLibraryA("Core.dll");
 
 	TEST_CLASS(UnitTest4)
 	{

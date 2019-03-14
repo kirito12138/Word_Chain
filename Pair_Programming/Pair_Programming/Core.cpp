@@ -33,10 +33,10 @@ int Core::gen_chain_word(char* words[], int len, char* result[], char head, char
 	vector <string> ans = rd.initDFS(1, head, tail, enable_loop);
 	ppa.VecToStr(result, ans);
 	ppa.print(ans);
-	for (int i = 0; i < len; i++)
+	/*for (int i = 0; i < len; i++)
 	{
 		free(words[i]);
-	}
+	}*/
 	return ans.size();
 }
 int Core::gen_chain_char(char* words[], int len, char* result[], char head, char tail, bool enable_loop)
@@ -49,9 +49,9 @@ int Core::gen_chain_char(char* words[], int len, char* result[], char head, char
 	vector <string> ans = rd.initDFS(2, head, tail, enable_loop);
 	ppa.VecToStr(result, ans);
 	ppa.print(ans);
-	for (int i = 0; i < len; i++)
+	/*for (int i = 0; i < len; i++)
 	{
 		free(words[i]);
-	}
+	}*/
 	return ans.size();
 }

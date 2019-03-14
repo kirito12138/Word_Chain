@@ -18,6 +18,7 @@ Core::~Core()
 
 void Error(string str)
 {
+	
 	throw(str);
 	//cout << "Error:" << str << "!\n" << endl;
 	//exit(0);
@@ -898,78 +899,100 @@ int PreProcess::strToWords(string temp, char* words[])
 int gen_chain_word(char* words[], int len, char* result[], char head, char tail, bool enable_loop)
 {
 	int debug = 0;
-	if (head != 0)
+	try
 	{
-		head == isalpha(head) ? head : 0;
-	}
-	if (tail != 0)
-	{
-		tail == isalpha(tail) ? tail : 0;
-	}
-	PreProcess ppa(words, len, enable_loop);
-	if (debug)
-	{
-		cout << "words to vector complete" << endl;
-	}
-	//cout << "1" << endl;
-	RingDFS rd(ppa);
+		if (head != 0)
+		{
+			head == isalpha(head) ? head : 0;
+		}
+		if (tail != 0)
+		{
+			tail == isalpha(tail) ? tail : 0;
+		}
+		PreProcess ppa(words, len, enable_loop);
+		if (debug)
+		{
+			cout << "words to vector complete" << endl;
+		}
+		//cout << "1" << endl;
+		RingDFS rd(ppa);
 
-	DFS dfs(ppa);
-	//ppa.printGraph();
-	dfs.getGraph();
-	dfs.hasRing(enable_loop);
-	if (debug)
-	{
-		cout << "check ring complete" << endl;
+		DFS dfs(ppa);
+		//ppa.printGraph();
+		dfs.getGraph();
+		dfs.hasRing(enable_loop);
+		if (debug)
+		{
+			cout << "check ring complete" << endl;
+		}
+		//ppa.printRingGraph();
+		vector <string> ans = rd.initDFS(1, head, tail, enable_loop);
+		if (debug)
+		{
+			cout << "dfs complete" << endl;
+		}
+		ppa.VecToStr(result, ans);
+		if (debug)
+		{
+			cout << "ans vector to result complete" << endl;
+		}
+		ppa.print(ans);
+		if (debug)
+		{
+			cout << "print to txt complete" << endl;
+			cout << ans.size() << endl;
+		}
+		/*for (int i = 0; i < len; i++)
+		{
+			free(words[i]);
+		}*/
+		int lll = int(ans.size());
+		return lll;
+		//return 1;
 	}
-	//ppa.printRingGraph();
-	vector <string> ans = rd.initDFS(1, head, tail, enable_loop);
-	if (debug)
+	catch (string str)
 	{
-		cout << "dfs complete" << endl;
+		cout << str << endl;
+		ofstream er("error.txt");
+		er << str << endl;
+		er.close();
+		return -1;
 	}
-	ppa.VecToStr(result, ans);
-	if (debug)
-	{
-		cout << "ans vector to result complete" << endl;
-	}
-	ppa.print(ans);
-	if (debug)
-	{
-		cout << "print to txt complete" << endl;
-		cout << ans.size() << endl;
-	}
-	/*for (int i = 0; i < len; i++)
-	{
-		free(words[i]);
-	}*/
-	int lll = int(ans.size());
-	return lll;
-	//return 1;
 }
 int gen_chain_char(char* words[], int len, char* result[], char head, char tail, bool enable_loop)
 {
-	if (head != 0)
+	try
 	{
-		head == isalpha(head) ? head : 0;
+		if (head != 0)
+		{
+			head == isalpha(head) ? head : 0;
+		}
+		if (tail != 0)
+		{
+			tail == isalpha(tail) ? tail : 0;
+		}
+		PreProcess ppa(words, len, enable_loop);
+		RingDFS rd(ppa);
+		DFS dfs(ppa);
+		dfs.getGraph();
+		dfs.hasRing(enable_loop);
+		vector <string> ans = rd.initDFS(2, head, tail, enable_loop);
+		ppa.VecToStr(result, ans);
+		ppa.print(ans);
+		/*for (int i = 0; i < len; i++)
+		{
+			free(words[i]);
+		}*/
+		int lll = int(ans.size());
+		return lll;
 	}
-	if (tail != 0)
+	catch (string str)
 	{
-		tail == isalpha(tail) ? tail : 0;
+		cout << str << endl;
+		ofstream er("error.txt");
+		er << str << endl;
+		er.close();
+		return -1;
 	}
-	PreProcess ppa(words, len, enable_loop);
-	RingDFS rd(ppa);
-	DFS dfs(ppa);
-	dfs.getGraph();
-	dfs.hasRing(enable_loop);
-	vector <string> ans = rd.initDFS(2, head, tail, enable_loop);
-	ppa.VecToStr(result, ans);
-	ppa.print(ans);
-	/*for (int i = 0; i < len; i++)
-	{
-		free(words[i]);
-	}*/
-	int lll = int(ans.size());
-	return lll;
 }
 
