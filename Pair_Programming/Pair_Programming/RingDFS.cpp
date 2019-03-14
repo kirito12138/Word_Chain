@@ -234,6 +234,11 @@ vector <string> RingDFS::initDFS(int mode, int head, int tail, int ring)
 					mI = i;
 				}
 			}
+			if (mR <= 0)
+			{
+				cout << "no solution" << endl;
+				return maxAns;
+			}
 			curT = mI;
 			curH = headLetter[mI];
 			hh = curH;

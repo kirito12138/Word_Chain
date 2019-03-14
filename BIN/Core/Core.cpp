@@ -315,6 +315,11 @@ vector <string> RingDFS::initDFS(int mode, int head, int tail, int ring)
 					mI = i;
 				}
 			}
+			if (mR <= 0)
+			{
+				cout << "no solution" << endl;
+				return maxAns;
+			}
 			curT = mI;
 			curH = headLetter[mI];
 			hh = curH;
@@ -728,13 +733,13 @@ void PreProcess::printRingGraph() {
 
 void PreProcess::print(vector <string> ary)
 {
-	ofstream slt("solution.txt");
+	//ofstream slt("solution.txt");
 	unsigned int i;
 	for (i = 0; i < ary.size(); i++)
 	{
-		slt << ary[i] << endl;
+		cout << ary[i] << endl;
 	}
-	slt.close();
+	//slt.close();
 }
 
 void PreProcess::strToVector(char* words[])
